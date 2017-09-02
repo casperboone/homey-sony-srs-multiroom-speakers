@@ -4,7 +4,7 @@ const Homey = require('homey');
 const Audio = require('./speaker/audio');
 const AvContent = require('./speaker/av-content');
 
-class SonySrsMultiroomSpeakers extends Homey.Device {
+class SonySrsMultiroomSpeaker extends Homey.Device {
     onInit() {
         this.log('device init');
         this.log('name:', this.getName());
@@ -43,4 +43,4 @@ class SonySrsMultiroomSpeakers extends Homey.Device {
     }
 }
 
-module.exports = SonySrsMultiroomSpeakers;
+module.exports = SonySrsMultiroomSpeaker;
