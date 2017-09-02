@@ -1,0 +1,87 @@
+{
+    "id": "nl.casperboone.sony-srs-multiroom-speakers",
+    "sdk": 2,
+    "name": {
+        "en": "Sony SRS Multi-room Speakers"
+    },
+    "description": {
+        "en": "Controls Sony SRS speakers."
+    },
+    "category": "music",
+    "version": "0.0.1",
+    "compatibility": ">=1.5.0",
+    "author": {
+        "name": "Casper Boone",
+        "email": "athom@casperboone.nl"
+    },
+    "drivers": [
+        {
+            "id": "sony-srs-multiroom-speakers",
+            "name": {
+                "en": "Sony SRS Multi-room Speakers"
+            },
+            "class": "speakers",
+            "capabilities": [ "volume_set" ],
+            "pair": [
+                {
+                    "id": "list_devices",
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_devices"
+                    }
+                },
+                {
+                    "id": "add_devices",
+                    "template": "add_devices"
+                }
+            ]
+        }
+    ],
+    "flow": {
+        "actions": [
+            {
+                "id": "volume_set",
+                "title": {
+                    "en": "Set the volume to"
+                },
+                "args": [
+                    {
+                        "name": "speaker",
+                        "type": "device",
+                        "filter": "driver_id=sony-srs-multiroom-speakers"
+                    },
+                    {
+                        "type": "number",
+                        "name": "volume",
+                        "min": 0,
+                        "max": 100,
+                        "step": 2,
+                        "placeholder": {
+                            "en": "Set a value"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "source_set",
+                "title": {
+                    "en": "Set the source"
+                },
+                "args": [
+                    {
+                        "name": "speaker",
+                        "type": "device",
+                        "filter": "driver_id=sony-srs-multiroom-speakers"
+                    },
+                    {
+                        "type": "autocomplete",
+                        "name": "source",
+                        "placeholder": {
+                            "en": "Select a source"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
