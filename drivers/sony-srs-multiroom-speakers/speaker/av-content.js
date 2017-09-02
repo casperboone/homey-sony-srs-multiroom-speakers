@@ -1,6 +1,6 @@
 'use strict'
 
-const Speaker = require('./speaker');
+const Speaker = require('./speaker')
 
 const SOURCE_ALIASES = {
     'exInput:hdmi': 'extInput:hdmi',
@@ -24,7 +24,7 @@ class AvContent extends Speaker {
 
     sources() {
         return new Promise((resolve, reject) => {
-            let results = [];
+            let results = []
 
             this.schemes()
                 .then(schemes => {
@@ -40,7 +40,7 @@ class AvContent extends Speaker {
                                     name: item.title
                                 })))
 
-                                schemesSet.delete(scheme);
+                                schemesSet.delete(scheme)
 
                                 if (schemesSet.size == 0) {
                                     resolve(results)
@@ -51,7 +51,7 @@ class AvContent extends Speaker {
 
                 })
                 .catch(reject)
-        });
+        })
 
     }
 

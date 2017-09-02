@@ -1,6 +1,6 @@
 'use strict'
 
-const Speaker = require('./speaker');
+const Speaker = require('./speaker')
 
 class Guide extends Speaker {
     constructor(scalarWebApiEndpoint, callback) {

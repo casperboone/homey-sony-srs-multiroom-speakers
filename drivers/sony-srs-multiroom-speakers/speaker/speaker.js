@@ -1,6 +1,6 @@
 'use strict'
 
-const WebSocket = require('ws');
+const WebSocket = require('ws')
 
 class Speaker {
     constructor(scalarWebApiEndpoint) {
@@ -51,4 +51,4 @@ class Speaker {
     }
 }
 
-module.exports = Speaker;
+module.exports = Speaker

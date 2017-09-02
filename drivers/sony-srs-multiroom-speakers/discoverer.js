@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 const SsdpClient = require('node-ssdp').Client
 const request = require('request-promise-native')
@@ -13,15 +13,15 @@ class Discoverer {
             let discovered = []
 
             let failed = error => {
-                ssdp.stop();
-                clearTimeout(timer);
-                reject(error);
-            };
+                ssdp.stop()
+                clearTimeout(timer)
+                reject(error)
+            }
 
             let timer = setTimeout(() => {
-                ssdp.stop();
-                resolve(discovered);
-            }, timeout);
+                ssdp.stop()
+                resolve(discovered)
+            }, timeout)
 
             ssdp.on('response', (headers, statusCode, data) => {
                 if (! headers.hasOwnProperty('LOCATION')) return
@@ -58,7 +58,7 @@ function requestDeviceDetails(url) {
                     try {
                         let scalarWebApiBaseUrl = result.root.device[0]['av:X_ScalarWebAPI_DeviceInfo'][0]['av:X_ScalarWebAPI_BaseURL'][0]
 
-                        let services = result.root.device[0]['av:X_ScalarWebAPI_DeviceInfo'][0]['av:X_ScalarWebAPI_ServiceList'][0]['av:X_ScalarWebAPI_ServiceType'];
+                        let services = result.root.device[0]['av:X_ScalarWebAPI_DeviceInfo'][0]['av:X_ScalarWebAPI_ServiceList'][0]['av:X_ScalarWebAPI_ServiceType']
 
                         if (! services.includes('audio')) {
                             throw 'Audio service not available on this device'

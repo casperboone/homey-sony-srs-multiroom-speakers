@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
-const Homey = require('homey');
+const Homey = require('homey')
 
 class SonySrsMultiroomSpeakers extends Homey.App {
 	
 }
 
-module.exports = SonySrsMultiroomSpeakers;
+module.exports = SonySrsMultiroomSpeakers
