@@ -14,6 +14,10 @@
         "name": "Casper Boone",
         "email": "athom@casperboone.nl"
     },
+    "images": {
+        "large": "/assets/images/large.jpg",
+        "small": "/assets/images/small.jpg"
+    },
     "drivers": [
         {
             "id": "sony-srs-multiroom-speakers",
@@ -34,7 +38,11 @@
                     "id": "add_devices",
                     "template": "add_devices"
                 }
-            ]
+            ],
+            "images": {
+                "large": "/drivers/sony-srs-multiroom-speakers/assets/images/large.jpg",
+                "small": "/drivers/sony-srs-multiroom-speakers/assets/images/small.jpg"
+            }
         }
     ],
     "flow": {
