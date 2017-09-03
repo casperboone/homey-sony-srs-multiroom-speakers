@@ -9,8 +9,6 @@ class SonySrsMultiroomSpeaker extends Homey.Device {
         this.audio = new Audio(this.getData().scalarWebApiBaseUrl)
         this.avContent = new AvContent(this.getData().scalarWebApiBaseUrl)
 
-        this.registerCapabilityListener('volume_set', this.onVolumeSet.bind(this))
-
         new Homey.FlowCardAction('volume_set').register().registerRunListener((args, state) => {
             this.audio.setVolume(args.volume)
 
@@ -27,13 +25,6 @@ class SonySrsMultiroomSpeaker extends Homey.Device {
             .registerAutocompleteListener((query, args) => {
                 return this.avContent.sources()
             })
-    }
-
-    onVolumeSet(value, opts, callback) {
-        console.log(value)
-        console.log(opts)
-
-        return Promise.reject(new Error('Not implemented'))
     }
 }
 
