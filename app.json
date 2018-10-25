@@ -24,7 +24,7 @@
             "name": {
                 "en": "Sony SRS Multi-room Speakers"
             },
-            "class": "speakers",
+            "class": "speaker",
             "capabilities": [ "volume_set" ],
             "pair": [
                 {
