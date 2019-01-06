@@ -47,8 +47,10 @@ class Discoverer {
 
 function requestDeviceDetails(url) {
     return new Promise((resolve, reject) => {
-        request(url)
+        console.log(url)
+        request("#0 URL:" + url)
             .then(result => {
+                console.log("#1 RAW FILE: " + result)
                 xml2js.parseString(result, (error, result) => {
                     if (error) {
                         reject(error)
@@ -57,13 +59,16 @@ function requestDeviceDetails(url) {
 
                     try {
                         let scalarWebApiBaseUrl = result.root.device[0]['av:X_ScalarWebAPI_DeviceInfo'][0]['av:X_ScalarWebAPI_BaseURL'][0]
-
+                        console.log("#2 Scalar Web API Base URL: " + scalarWebApiBaseUrl)
                         let services = result.root.device[0]['av:X_ScalarWebAPI_DeviceInfo'][0]['av:X_ScalarWebAPI_ServiceList'][0]['av:X_ScalarWebAPI_ServiceType']
+                        console.log("#3 Services: " + services)
 
                         if (! services.includes('audio')) {
                             throw 'Audio service not available on this device'
                         }
 
+                        console.log("#4 Unique Device name: " + result.root.device[0].UDN[0])
+                        console.log("#5 Name: " + result.root.device[0].friendlyName[0])
                         resolve({
                             uniqueDeviceName: result.root.device[0].UDN[0],
                             name: result.root.device[0].friendlyName[0],
