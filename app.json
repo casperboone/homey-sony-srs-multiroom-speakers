@@ -25,7 +25,7 @@
                 "en": "Sony SRS Multi-room Speakers"
             },
             "class": "speaker",
-            "capabilities": [ "volume_set" ],
+            "capabilities": [ "volume_set", "volume_mute" ],
             "pair": [
                 {
                     "id": "list_devices",

@@ -8,7 +8,21 @@ class Audio extends Speaker {
     }
 
     setVolume(volume) {
-        this._send('{ "method":"setAudioVolume","params":[{"volume":"' + volume + '","output":""}],"version":"1.1","id":4 }')
+        this._send('{ "method":"setAudioVolume","params":[{"volume":"' + volume + '","output":""}],"version":"1.1","id":' + this.newMessageId() +' }')
+    }
+
+    setMute(mute) {
+        this._send('{ "method":"setAudioMute","params":[{"mute":"' + (mute ? 'on' : 'off') + '","output":""}],"version":"1.1","id":' + this.newMessageId() +' }')
+    }
+
+    getVolume() {
+        return new Promise((resolve, reject) => {
+            this._send('{ "method":"getVolumeInformation","params":[{"output":""}],"version":"1.1","id":' + this.newMessageId() + ' }')
+
+            this.waitForMessage(this.messageId)
+                .then(message => resolve(message.result[0][0]))
+                .catch(reject)
+        })
     }
 }
 

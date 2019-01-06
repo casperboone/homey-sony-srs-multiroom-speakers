@@ -2,6 +2,8 @@
 
 const WebSocket = require('ws')
 
+const MAX_MESSAGE_ID = 1000
+
 class Speaker {
     constructor(scalarWebApiEndpoint) {
         this.scalarWebApiEndpoint = scalarWebApiEndpoint
@@ -10,6 +12,13 @@ class Speaker {
         this.messageQueue = new Map()
 
         this._reconnect()
+    }
+
+    newMessageId() {
+        if (this.messageId > MAX_MESSAGE_ID) {
+            this.messageId = 0
+        }
+        return ++this.messageId
     }
 
     waitForMessage(id, timeout = 5000) {

@@ -14,7 +14,7 @@ class AvContent extends Speaker {
     
     schemes() {
         return new Promise((resolve, reject) => {
-            this._send('{"method":"getSchemeList","version":"1.0","params":[],"id":' + ++this.messageId + '}')
+            this._send('{"method":"getSchemeList","version":"1.0","params":[],"id":' + this.newMessageId() + '}')
 
             this.waitForMessage(this.messageId)
                 .then(message => resolve(message.result[0].map(item => item.scheme)))
@@ -31,7 +31,7 @@ class AvContent extends Speaker {
                     let schemesSet = new Set(schemes)
 
                     schemes.forEach(scheme => {
-                        this._send('{ "method":"getSourceList","params":[{"scheme":"' + scheme + '"}],"version":"1.2","id":' + ++this.messageId + ' }')
+                        this._send('{ "method":"getSourceList","params":[{"scheme":"' + scheme + '"}],"version":"1.2","id":' + this.newMessageId() + ' }')
 
                         this.waitForMessage(this.messageId)
                             .then(message => {
@@ -56,7 +56,7 @@ class AvContent extends Speaker {
     }
 
     setSource(source) {
-        this._send(' { "method":"setPlayContent","params":[{"uri":"' + source + '","output":""}],"version":"1.2","id":8 }')
+        this._send(' { "method":"setPlayContent","params":[{"uri":"' + source + '","output":""}],"version":"1.2","id":' + this.newMessageId() + ' }')
     }
 
 }
