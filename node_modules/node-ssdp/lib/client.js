@@ -28,6 +28,7 @@ var SSDP = require('./')
   , util = require('util')
   , c = require('./const')
   , Promise = require('bluebird')
+  , SsdpHeader = require('./ssdpHeader')
 
 /**
  *
@@ -35,7 +36,7 @@ var SSDP = require('./')
  * @constructor
  */
 function SsdpClient(opts) {
-  this._subclass = 'ssdp-client'
+  this._subclass = 'node-ssdp:client'
   SSDP.call(this, opts)
 }
 
@@ -83,22 +84,21 @@ SsdpClient.prototype.search = function search(serviceType) {
     })
   }
 
-  var pkt = self._getSSDPHeader(
-    c.M_SEARCH,
-    {
-      'HOST': self._ssdpServerHost,
-      'ST': serviceType,
-      'MAN': '"ssdp:discover"',
-      'MX': 3
+  var header = new SsdpHeader(c.M_SEARCH, {
+    'HOST': self._ssdpServerHost,
+    'ST': serviceType,
+    'MAN': '"ssdp:discover"',
+    'MX': 3
+  })
+
+  self._logger('Attempting to send an M-SEARCH request')
+
+  self._send(header, function (err, bytes) {
+    if (err) {
+      self._logger('Error: unable to send M-SEARCH request ID %s: %o', header.id(), err)
+    } else {
+      self._logger('Sent M-SEARCH request: %o', {'message': header.toString(), id: header.id()})
     }
-  )
-
-  self._logger('Sending an M-SEARCH request')
-
-  var message = new Buffer(pkt)
-
-  self._send(message, function (err, bytes) {
-    self._logger('Sent M-SEARCH request: %o', {'message': pkt})
   })
 }
 

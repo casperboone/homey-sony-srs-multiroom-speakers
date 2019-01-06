@@ -4,10 +4,10 @@
   "description": "Controls Sony SRS speakers.",
   "main": "app.js",
   "dependencies": {
-    "node-ssdp": "^3.2.1",
-    "request": "^2.81.0",
-    "request-promise-native": "^1.0.4",
-    "ws": "^3.1.0",
+    "node-ssdp": "^3.3.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "ws": "^3.3.3",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {},
